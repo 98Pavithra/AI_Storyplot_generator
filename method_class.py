@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 class MethodClass:
     # Constants
-    MODEL_NAME = "gpt-3.5-turbo-instruct"
+    MODEL_NAME = "text-davinci-003"
 
     # Load OpenAI API key from environment variable
     @staticmethod
@@ -18,7 +18,7 @@ class MethodClass:
         openai.api_key = MethodClass.get_openai_key()
         try:
             response = openai.Completion.create(
-                engine=MethodClass.MODEL_NAME,
+                model=MethodClass.MODEL_NAME,
                 prompt=prompt,
                 max_tokens=600,
                 temperature=0.7,
@@ -26,4 +26,5 @@ class MethodClass:
             story_plot = response.choices[0].text.strip()
             return story_plot
         except openai.OpenAIError as error:
+            print("OpenAI Error:", error)
             return "An error occurred while generating the story plot."
