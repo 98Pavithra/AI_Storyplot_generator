@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 class MethodClass:
     # Constants
-    MODEL_NAME = "gpt-3.5-turbo-instruct"
+    MODEL_NAME = "text-davinci-003"
 
     # Load OpenAI API key from environment variable
     @staticmethod
