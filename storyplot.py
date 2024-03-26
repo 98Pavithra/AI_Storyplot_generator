@@ -1,5 +1,4 @@
 import streamlit as st
-import openai
 from method_class import MethodClass as mc
 
 def main():
@@ -57,8 +56,6 @@ def main():
         # Display generated story plot
         st.subheader("Generated Story Plot:")
         st.write(story_plot)
-
-    
 
 if __name__ == "__main__":
     main()
