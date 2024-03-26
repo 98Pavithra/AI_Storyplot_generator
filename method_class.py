@@ -25,5 +25,5 @@ class MethodClass:
             )
             story_plot = response.choices[0].text.strip()
             return story_plot
-        except openai.error.OpenAIError as error:
+        except openai.error.APIError as error:
             return "An error occurred while generating the story plot."
