@@ -1,28 +1,28 @@
 import streamlit as st
+import openai
 from method_class import MethodClass as mc
 
 def main():
-
     # Apply custom CSS for title styling
     st.markdown(
-    """
-     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Brush+Script+MT&display=swap');
-    .title-text {
-        font-family: 'Brush Script MT', cursive;
-        font-size: 85px;
-        text-align: center;
-        font-weight: bold;
-        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 16%, rgba(143,80,8,1) 30%, rgba(61,112,78,1) 45%, rgba(137,45,137,1) 59%, rgba(192,113,74,1) 78%, rgba(0,212,255,1) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+        """
+         <style>
+        @import url('https://fonts.googleapis.com/css2?family=Brush+Script+MT&display=swap');
+        .title-text {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 85px;
+            text-align: center;
+            font-weight: bold;
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 16%, rgba(143,80,8,1) 30%, rgba(61,112,78,1) 45%, rgba(137,45,137,1) 59%, rgba(192,113,74,1) 78%, rgba(0,212,255,1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
-# Title with custom styling and decorative font
+    # Title with custom styling and decorative font
     st.markdown('<p class="title-text">AI Story Plot Generator</p>', unsafe_allow_html=True)
 
     # User Input Section
@@ -51,11 +51,17 @@ def main():
         prompt = f"In a {setting} setting, {characters} encounter a {theme} situation. They embark on a journey filled with {plot_elements}. As the story unfolds, unexpected twists and turns shape the narrative.\n\nWrite a compelling story outline in the {genre} genre, incorporating these elements."
 
         # Generate story plot
-        story_plot = mc.generate_story_plot(prompt)
+        story_plot, scenes = mc.generate_story_plot_with_scenes(prompt)
 
         # Display generated story plot
         st.subheader("Generated Story Plot:")
         st.write(story_plot)
+
+        # Display generated scenes
+        st.subheader("Scenes:")
+        for scene in scenes:
+            st.write(scene)
+
 
 if __name__ == "__main__":
     main()
